@@ -1,0 +1,49 @@
+# GAMESTORE - Levanta todo el proyecto con: docker compose up --build
+# Servicios: db (MySQL) -> api (Python) -> web (Frontend nginx)
+
+services:
+  db:
+    build: ./database
+    container_name: gamestore_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: "${MYSQL_DATABASE:-gamestore}"
+      MYSQL_USER: "${MYSQL_USER:-gamestore}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD:-gamestore}"
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD:-root}"
+    volumes:
+      # Los datos se guardan dentro del proyecto (database/data) y sobreviven
+      # al reinicio o reconstruccion de los contenedores.
+      - ./database/data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+
+  api:
+    build: ./backend
+    container_name: gamestore_api
+    restart: unless-stopped
+    environment:
+      API_PORT: "${API_INTERNAL_PORT:-8080}"
+      DB_HOST: "${DB_HOST:-db}"
+      DB_PORT: "${DB_PORT:-3306}"
+      DB_NAME: "${DB_NAME:-gamestore}"
+      DB_USER: "${DB_USER:-gamestore}"
+      DB_PASSWORD: "${DB_PASSWORD:-gamestore}"
+    ports:
+      - "${API_PORT:-8080}:${API_INTERNAL_PORT:-8080}"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build: ./frontend
+    container_name: gamestore_web
+    restart: unless-stopped
+    ports:
+      - "${WEB_PORT:-3000}:80"
+    depends_on:
+      - api

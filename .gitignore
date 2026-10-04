@@ -1,0 +1,27 @@
+# Archivo de instrucciones del entregable
+instructions.md
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Variables de entorno
+# .env
+
+# Sistema y editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Docker
+*.pid
+
+# Datos de MySQL (volumen en bind mount)
+database/data/

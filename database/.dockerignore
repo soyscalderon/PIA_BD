@@ -1,0 +1,2 @@
+# La carpeta data/ con los archivos de MySQL no debe entrar al contexto de build
+data/
