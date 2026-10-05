@@ -24,4 +24,7 @@ Thumbs.db
 *.pid
 
 # Datos de MySQL (volumen en bind mount)
-database/data/
+# database/data/
+
+# Configuracion de MySQL Workbench (volumen en bind mount)
+# workbench/
