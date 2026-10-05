@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<data grt_format="2.0">
+  <value _ptr_="0x55ffed6126a0" type="list" content-type="object" content-struct-name="db.mgmt.Connection">
+    <value type="object" struct-name="db.mgmt.Connection" id="eb1925d6-c091-11f1-aba2-b682b5bb8539" struct-checksum="0x96ba47d8">
+      <link type="object" struct-name="db.mgmt.Driver" key="driver">com.mysql.rdbms.mysql.driver.native</link>
+      <value type="string" key="hostIdentifier">Mysql@db:3306</value>
+      <value type="int" key="isDefault">1</value>
+      <value _ptr_="0x55ffee8e3cf0" type="dict" key="modules"/>
+      <value _ptr_="0x55fff031f360" type="dict" key="parameterValues">
+        <value type="string" key=""></value>
+        <value type="string" key="SQL_MODE"></value>
+        <value type="string" key="hostName">db</value>
+        <value type="int" key="lastConnected">1791186985</value>
+        <value type="string" key="password"></value>
+        <value type="int" key="port">3306</value>
+        <value type="string" key="schema"></value>
+        <value type="string" key="serverVersion">8.0.46</value>
+        <value type="string" key="sslCA"></value>
+        <value type="string" key="sslCert"></value>
+        <value type="string" key="sslCipher"></value>
+        <value type="string" key="sslKey"></value>
+        <value type="int" key="useSSL">1</value>
+        <value type="string" key="userName">root</value>
+      </value>
+      <value type="string" key="name">gamestore_root</value>
+    </value>
+    <value type="object" struct-name="db.mgmt.Connection" id="0f8f023c-c092-11f1-aba2-b682b5bb8539" struct-checksum="0x96ba47d8">
+      <link type="object" struct-name="db.mgmt.Driver" key="driver">com.mysql.rdbms.mysql.driver.native</link>
+      <value type="string" key="hostIdentifier">Mysql@db:3306</value>
+      <value type="int" key="isDefault">0</value>
+      <value _ptr_="0x55ffeef79940" type="dict" key="modules"/>
+      <value _ptr_="0x55ffefa89590" type="dict" key="parameterValues">
+        <value type="string" key="SQL_MODE"></value>
+        <value type="string" key="hostName">db</value>
+        <value type="int" key="lastConnected">1791186917</value>
+        <value type="string" key="password"></value>
+        <value type="int" key="port">3306</value>
+        <value type="string" key="schema"></value>
+        <value type="string" key="serverVersion">8.0.46</value>
+        <value type="string" key="sslCA"></value>
+        <value type="string" key="sslCert"></value>
+        <value type="string" key="sslCipher"></value>
+        <value type="string" key="sslKey"></value>
+        <value type="int" key="useSSL">1</value>
+        <value type="string" key="userName">gamestore</value>
+      </value>
+      <value type="string" key="name">gamestore</value>
+    </value>
+  </value>
+</data>

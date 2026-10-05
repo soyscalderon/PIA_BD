@@ -66,6 +66,7 @@ docker compose up -d
 |----------|-----|--------|
 | Frontend | http://localhost:3000 | 3000 (HTTP) |
 | API      | http://localhost:8080/api | 8080 (HTTP) |
+| MySQL Workbench | https://localhost:3002 | 3001 (HTTPS), 3002 (HTTP) |
 | MySQL    | solo dentro de la red de Docker | 3306 |
 
 El frontend consume la API a traves del mismo dominio (`/api/...`), ya que
@@ -90,6 +91,10 @@ Declaradas en `docker-compose.yml`:
 | `db`  | `./database`  | - |
 | `api` | `./backend`   | `db` (hasta que el healthcheck responda) |
 | `web` | `./frontend`  | `api` |
+| `workbench` | imagen `lscr.io/linuxserver/mysql-workbench` | `db` (hasta que el healthcheck responda) |
+
+En MySQL Workbench crear una conexion con Host `db`, Puerto `3306`,
+Usuario `gamestore` (o `root`) y la contrasena de `.env`.
 
 La carpeta `./database/data` del propio proyecto queda montada como
 `/var/lib/mysql` dentro del contenedor (bind mount), de modo que los datos

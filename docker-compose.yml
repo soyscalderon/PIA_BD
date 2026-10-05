@@ -1,5 +1,6 @@
 # GAMESTORE - Levanta todo el proyecto con: docker compose up --build
 # Servicios: db (MySQL) -> api (Python) -> web (Frontend nginx)
+#            workbench (MySQL Workbench en el navegador)
 
 services:
   db:
@@ -47,3 +48,28 @@ services:
       - "${WEB_PORT:-3000}:80"
     depends_on:
       - api
+
+  # MySQL Workbench corriendo en el navegador (linuxserver/mysql-workbench).
+  # Abrir https://localhost:3002 y crear una conexion con Host: db,
+  # Usuario: root (o gamestore) y la contrasena definida en .env.
+  workbench:
+    image: lscr.io/linuxserver/mysql-workbench:latest
+    container_name: gamestore_workbench
+    restart: unless-stopped
+    cap_add:
+      - IPC_LOCK
+    environment:
+      PUID: "${PUID:-1000}"
+      PGID: "${PGID:-1000}"
+      TZ: "${TZ:-Etc/UTC}"
+    ports:
+      # 3000/3001 son los puertos internos de la imagen; el 3000 del
+      # contenedor se mapea a 3002 porque 3000 lo usa el frontend.
+      - "${WORKBENCH_HTTP_PORT:-3002}:3000"
+      - "${WORKBENCH_HTTPS_PORT:-3001}:3001"
+    volumes:
+      - ./database/workbench/config:/config
+    shm_size: "1gb"
+    depends_on:
+      db:
+        condition: service_healthy

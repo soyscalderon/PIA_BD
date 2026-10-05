@@ -1,0 +1,10 @@
+<DefaultPrinter Selkies>
+Info Selkies printer
+Location In the browser
+DeviceURI selkies:/config/.local/state/selkies/print
+State Idle
+Accepting Yes
+Shared No
+JobSheets none none
+ErrorPolicy retry-job
+</DefaultPrinter>
